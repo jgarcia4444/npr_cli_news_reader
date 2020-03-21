@@ -12,12 +12,15 @@ class NprCliNewsReader::Scraper
     doc = Nokogiri::HTML(html)
     category = category_url.split("/")[2]
     articles = doc.css("article.item")
-    articles.first
+    articles_with_attributes = get_and_set_article_attributes(articles, category)
+    articles_with_attributes
   end
   
   #loop over article_nodes grabbing the relevant data for the Article attributes
-  def get_article_attributes(article_nodes, category)
-    
+  def get_and_set_article_attributes(article_nodes, category)
+    article_nodes.each do |article|
+      
+    end
   end
   
 end
