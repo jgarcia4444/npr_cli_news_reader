@@ -6,3 +6,5 @@ cli = NprCliNewsReader::CLI.new
 
 cli.greeting
 cli.display_article_categories
+
+NprCliNewsReader::Scraper.get_articles("/sections/national")

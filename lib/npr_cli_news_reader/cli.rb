@@ -33,7 +33,7 @@ class NprCliNewsReader::CLI
     if valid_category_input?(user_input)
       categories_index = user_input.to_i - 1
       selected_category = @categories[categories_index].downcase
-      @articles = NprCliNewsReader::Scraper.get_articles("sections/#{selected_category}")
+      @articles = NprCliNewsReader::Scraper.get_articles("/sections/#{selected_category}")
     end
   end
   
