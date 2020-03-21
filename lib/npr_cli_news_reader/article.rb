@@ -1,0 +1,5 @@
+class NprCliNewsReader::Article
+  
+  
+  
+end

@@ -2,5 +2,7 @@
 
 require_relative "../lib/npr_cli_news_reader"
 
+cli = NprCliNewsReader::CLI.new
 
-CLI.new
+cli.greeting
+cli.display_article_categories
