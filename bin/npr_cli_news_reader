@@ -6,5 +6,11 @@ cli = NprCliNewsReader::CLI.new
 
 cli.greeting
 cli.display_article_categories
-
-NprCliNewsReader::Scraper.get_articles("/sections/national")
+puts "Which category would you like to see news articles for?"
+puts "(Enter the # associated with the category)"
+category_input = gets.strip
+cli.handle_category_input(category_input)
+cli.display_articles
+puts "Which article would you like to read?"
+puts "(Enter the number associated with the article):"
+selected_article = gets.strip
