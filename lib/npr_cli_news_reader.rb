@@ -4,6 +4,7 @@ require_relative "./npr_cli_news_reader/scraper"
 require_relative "./npr_cli_news_reader/article"
 require 'open-uri'
 require 'nokogiri'
+require 'pry'
 
 
 module NprCliNewsReader

@@ -14,3 +14,4 @@ cli.display_articles
 puts "Which article would you like to read?"
 puts "(Enter the number associated with the article):"
 selected_article = gets.strip
+cli.handle_article_input(selected_article)

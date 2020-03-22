@@ -38,10 +38,10 @@ class NprCliNewsReader::CLI
   end
   
   def display_articles
+    puts "----- #{@articles.first.category.capitalize} Category -----"
     @articles.each_with_index do |article, i|
       puts "#{i + 1}). #{article.title}"
       puts "#{article.short_description}"
-      puts "#{article.article_url}"
       puts "-------------------"
     end
   end
@@ -50,7 +50,19 @@ class NprCliNewsReader::CLI
     if valid_input?(user_input, @articles)
       article_index = user_input.to_i - 1
       selected_article = @articles[article_index]
+      puts 'Loading...'
+      full_article = NprCliNewsReader::Scraper.get_full_article(selected_article.article_url)
+      selected_article.full_article = full_article
+      sleep(2)
+      display_selected_article(selected_article)
     end
+  end
+  
+  def display_selected_article(article)
+    puts '-------------------'
+    puts article.title
+    article.full_article.each { |p| puts p.text.strip}
+    puts '(END)'
   end
   
   

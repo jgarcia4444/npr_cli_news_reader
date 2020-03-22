@@ -3,9 +3,6 @@
 
 class NprCliNewsReader::Scraper
   
-  attr_accessor :base_url
-  
-  
   # Return an array of articles, all attributes set except for full_article
   def self.get_articles(category_url)
     html = open("https://www.npr.org#{category_url}")
@@ -34,6 +31,11 @@ class NprCliNewsReader::Scraper
   end
   
   def self.get_full_article(article_url)
+    html = open(article_url)
+    doc = Nokogiri::HTML(html)
+    full_article_container = doc.css('#storytext')
+    content = full_article_container.css('p')
+    content
   end
   
 end
