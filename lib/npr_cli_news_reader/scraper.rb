@@ -1,6 +1,3 @@
-1
-
-
 class NprCliNewsReader::Scraper
   
   # Return an array of articles, all attributes set except for full_article

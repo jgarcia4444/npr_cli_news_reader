@@ -1,10 +1,11 @@
 class NprCliNewsReader::CLI 
   
-  attr_accessor :articles
+  attr_accessor :articles, :done
   
   def initialize
     @categories = ["National", "World", "Politics", "Business", "Health", "Science", "Technology", "Race & Culture"]
     @articles = []
+    @done = false
   end
  
   
@@ -40,6 +41,7 @@ class NprCliNewsReader::CLI
   def display_articles
     puts "----- #{@articles.first.category.capitalize} Category -----"
     @articles.each_with_index do |article, i|
+      sleep(0.5)
       puts "#{i + 1}). #{article.title}"
       puts "#{article.short_description}"
       puts "-------------------"
@@ -63,6 +65,16 @@ class NprCliNewsReader::CLI
     puts article.title
     article.full_article.each { |p| puts p.text.strip}
     puts '(END)'
+  end
+  
+  def restart_or_exit(user_input)
+    if user_input == 'home' 
+      @articles.clear
+    elsif user_input == 'exit'
+      puts "Thanks for using NPR CLI News Reader."
+      puts "Goodbye!"  
+      @done = true
+    end
   end
   
   
