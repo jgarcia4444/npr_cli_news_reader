@@ -19,7 +19,7 @@ class NprCliNewsReader::CLI
   
   def display_article_categories
     puts "----Article Categories----"
-    @categories.each_with_index {|category, i| puts "#{i + 1}.) #{category}"}
+    @categories.each_with_index {|category, i| puts "#{i + 1}.) #{Rainbow(category).bright}"}
   end
   
   def valid_input?(user_input, collection)
@@ -39,10 +39,10 @@ class NprCliNewsReader::CLI
   end
   
   def display_articles
-    puts "----- #{@articles.first.category.capitalize} Category -----"
+    puts "----- #{Rainbow(@articles.first.category.capitalize).bright} Category -----"
     @articles.each_with_index do |article, i|
       sleep(0.5)
-      puts "#{i + 1}). #{article.title}"
+      puts "#{i + 1}). #{Rainbow(article.title).bright}"
       puts "#{article.short_description}"
       puts "-------------------"
     end
@@ -62,7 +62,7 @@ class NprCliNewsReader::CLI
   
   def display_selected_article(article)
     puts '-------------------'
-    puts article.title
+    puts Rainbow(article.title).bright
     article.full_article.each { |p| puts p.text.strip}
     puts '(END)'
   end
