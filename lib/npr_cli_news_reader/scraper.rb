@@ -6,13 +6,11 @@ class NprCliNewsReader::Scraper
     doc = Nokogiri::HTML(html)
     category = category_url.split("/")[2]
     articles = doc.css("article.item")
-    articles_with_attributes = self.get_and_set_article_attributes(articles, category)
-    articles_with_attributes
+    self.get_and_set_article_attributes(articles, category)
   end
   
   #loop over article_nodes grabbing the relevant data for the Article attributes
   def self.get_and_set_article_attributes(article_nodes, category)
-    articles_with_attributes = []
     article_nodes.each do |article|
       anchor_tag = article.css('.teaser a')
       article_attributes = {
@@ -21,10 +19,8 @@ class NprCliNewsReader::Scraper
         short_description: article.css('.teaser').text,
         article_url: anchor_tag.attribute('href').to_s
       }
-      new_article = NprCliNewsReader::Article.new(article_attributes)
-      articles_with_attributes << new_article
+      NprCliNewsReader::Article.new(article_attributes)
     end
-    articles_with_attributes
   end
   
   def self.get_full_article(article_url)
@@ -32,7 +28,8 @@ class NprCliNewsReader::Scraper
     doc = Nokogiri::HTML(html)
     full_article_container = doc.css('#storytext')
     content = full_article_container.css('p')
-    content
+    text_array = content.map {|p_element| p_element.text.strip}
+    text_array
   end
   
 end
