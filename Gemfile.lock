@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    npr_cli_news_reader (0.1.0)
+    npr_cli_news_reader (0.1.6)
       nokogiri
       rainbow
 
