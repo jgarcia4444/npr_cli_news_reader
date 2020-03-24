@@ -23,6 +23,7 @@ Or install it yourself as:
 In Terminal enter once installed:
 
   irb
+  > require 'npr_cli_news_reader'
   > NprCliNewsReader::Run.start
   
 This command will start up the CLI application
