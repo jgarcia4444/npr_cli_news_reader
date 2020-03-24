@@ -5,7 +5,6 @@ require_relative "./npr_cli_news_reader/article"
 require 'open-uri'
 require 'nokogiri'
 require 'rainbow'
-require 'pry'
 
 module NprCliNewsReader
   class Error < StandardError; end

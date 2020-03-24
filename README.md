@@ -1,8 +1,6 @@
 # NprCliNewsReader
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/npr_cli_news_reader`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This Gem allows a user to choose from a list of news categories. The ClI then displays the articles from npr.org that are under the selected category. Then the user can select a specific article. Once an article is selected then the full article will be displayed. Once the user gets to the end of the article they have a choice to exit the program or return to the category selection.
 
 ## Installation
 
@@ -22,7 +20,12 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+In Terminal enter:
+
+  ruby -Ilib ./bin/npr_cli_news_reader
+  
+This command will start up the CLI application
+
 
 ## Development
 
