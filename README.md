@@ -20,9 +20,10 @@ Or install it yourself as:
 
 ## Usage
 
-In Terminal enter:
+In Terminal enter once installed:
 
-  ruby -Ilib ./bin/npr_cli_news_reader
+  irb
+  > NprCliNewsReader::Run.start
   
 This command will start up the CLI application
 
