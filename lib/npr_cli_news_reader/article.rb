@@ -13,22 +13,4 @@ class NprCliNewsReader::Article
     @@all
   end
   
-  def self.find_by_category(filter)
-    self.all.detect {|article| article.category == filter}
-  end
-  
-  def self.find_or_create_article(article)
-    if self.find_by_category(filter) == nil
-      NprCliNewsReader::Scraper.get_articles("/sections/#{filter}")
-    else
-      self.sort_articles(filter)
-    end
-  end
-  
-  def self.sort_articles_by_category(filter)
-    self.all.select {|article| article.category == filter}
-  end
-  
-  
-  
 end
