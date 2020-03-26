@@ -1,10 +1,6 @@
 Refactor notes round 1
-  - Executable should have one method call in it
-    - NprCliNewsReader::CLI.new.call 
   
   - Take the functionality from run.rb and place it into a call instance method in the CLI class
-  
-  FIXED - There is an error when trying to run the console for the project
   
   - Take the article creation out of the cli.
     - Move this functionality into the scraper class

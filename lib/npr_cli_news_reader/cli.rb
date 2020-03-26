@@ -14,9 +14,22 @@ class NprCliNewsReader::CLI
     # use the selection to display the articles in that category
     # let the user select an article
     # display the full article.
-    
-    
+    greet_user
+    present_categories
   end  
+  
+  def greet_user
+    puts "Hello fellow fact finder..."
+    puts "Welcome to the Npr Cli News Reader."
+    puts "--------------------"
+  end
+  
+  def present_categories
+    puts Rainbow("Categories").bright
+    @categories.each_with_index do |category, i|
+      puts "#{Rainbow(i + 1).bright}). #{Rainbow(category).bright}"
+    end
+  end
   
   
 end
