@@ -16,6 +16,7 @@ class NprCliNewsReader::CLI
     # display the full article.
     greet_user
     present_categories
+    display_category_articles
   end  
   
   def greet_user
@@ -29,6 +30,26 @@ class NprCliNewsReader::CLI
     @categories.each_with_index do |category, i|
       puts "#{Rainbow(i + 1).bright}). #{Rainbow(category).bright}"
     end
+  end
+  
+  def valid_input?(user_input, collection)
+    if user_input.to_i > 0 && user_input.to_i <= collection.size
+      return true
+    else
+      return false
+    end
+  end
+  
+  def display_category_articles
+    puts Rainbow("Which Category would you like to see articles for?").bright
+    puts "Use the numbers associated with the categories."
+    category_input = gets.strip
+    while !valid_input?(category_input, @categories)
+      puts "Sorry, the input received is not valid to select a category"
+      puts "Please enter a number 1-8:"
+      category_input = gets.strip  
+    end
+    puts Rainbow("#{@categories[category_input.to_i - 1]}").bright + " Category"
   end
   
   
