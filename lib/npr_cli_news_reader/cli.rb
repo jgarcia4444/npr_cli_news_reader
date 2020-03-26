@@ -9,6 +9,16 @@ class NprCliNewsReader::CLI
     @done = false
   end
   
+  def call
+    
+    # greet the users and display the categories with numbers for selection
+    # let the user select a category 
+    # use the selection to display the articles in that category
+    # let the user select an article
+    # display the full article.
+    
+    
+  end  
   def greeting
     puts
     puts "--------Hello fellow fact finder!--------"
