@@ -16,19 +16,24 @@ class NprCliNewsReader::CLI
     greet_user
     present_categories
     display_category_articles
-    binding.pry
   end  
   
   def greet_user
-    puts "Hello fellow fact finder..."
-    puts "Welcome to the Npr Cli News Reader."
+    puts Rainbow("Hello fellow fact finder...").bright
+    puts Rainbow("Welcome to the Npr Cli News Reader.").bright.fg(:green)
     puts "--------------------"
+    sleep(1.5)
   end
   
   def present_categories
     puts Rainbow("Categories").bright
+    puts "--------------------"
     @categories.each_with_index do |category, i|
-      puts "#{Rainbow(i + 1).bright}). #{Rainbow(category).bright}"
+      if i.even?
+        puts Rainbow("#{i + 1}). #{category}").bright
+      else
+        puts Rainbow("#{i + 1}). #{category}").bright.fg(:green)
+      end
     end
   end
   
@@ -54,11 +59,28 @@ class NprCliNewsReader::CLI
       
     end
     
-    puts Rainbow("#{@categories[category_input.to_i - 1]}").bright + " Category"
+    puts Rainbow("#{@categories[category_input.to_i - 1]} Category").bright
     puts "--------------------"
     NprCliNewsReader::Scraper.scrape_articles_for_category(@categories[category_input.to_i - 1])
-    
+    # NprCliNewsReader::Article.sort_articles_by_category(@categories[category_input.to_i - 1]).each_with_index do |article, i|
+    #   puts "#{i + 1})." + Rainbow("#{article.title}").bright
+    # end
+    NprCliNewsReader::Article.all.each_with_index do |article, i|
+      if i % 2 == 0
+        puts Rainbow("#{i + 1}").bright + ")." + Rainbow(" #{article.title}").bright
+        puts
+        puts Rainbow("#{article.teaser}").bright
+        puts
+        puts "--------------------"
+        puts
+      else
+        puts Rainbow("#{i + 1}). #{article.title}").bright.fg(:green)
+        puts
+        puts Rainbow("#{article.teaser}").bright.fg(:green)
+        puts
+        puts "--------------------"
+        puts
+      end
+    end
   end
-  
-  
 end

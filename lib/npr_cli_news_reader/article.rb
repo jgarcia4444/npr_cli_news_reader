@@ -17,4 +17,8 @@ class NprCliNewsReader::Article
     
   end
   
+  def self.sort_articles_by_category(filter)
+    self.all.map {|article| article.category == filter.downcase}
+  end
+  
 end
