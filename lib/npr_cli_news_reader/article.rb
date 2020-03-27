@@ -13,6 +13,10 @@ class NprCliNewsReader::Article
     @@all
   end
   
+  def self.create_or_find_articles(category)
+    
+  end
+  
   def add_attributes(article_attributes)
     
   end

@@ -9,8 +9,6 @@ class NprCliNewsReader::CLI
   
   def call
     
-    # let the user select a category 
-    # use the selection to display the articles in that category
     # let the user select an article
     # display the full article.
     greet_user
