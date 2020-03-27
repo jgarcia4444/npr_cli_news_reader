@@ -43,6 +43,11 @@ class NprCliNewsReader::CLI
     end
   end
   
+  def format_teaser(teaser_string)
+    formatted_teaser = teaser_string.split(/\A.+[\u0095]\s/)[1]
+    formatted_teaser
+  end
+  
   def display_category_articles
     
     puts Rainbow("Which Category would you like to see articles for?").bright
@@ -60,21 +65,19 @@ class NprCliNewsReader::CLI
     puts Rainbow("#{@categories[category_input.to_i - 1]} Category").bright
     puts "--------------------"
     NprCliNewsReader::Scraper.scrape_articles_for_category(@categories[category_input.to_i - 1])
-    # NprCliNewsReader::Article.sort_articles_by_category(@categories[category_input.to_i - 1]).each_with_index do |article, i|
-    #   puts "#{i + 1})." + Rainbow("#{article.title}").bright
-    # end
     NprCliNewsReader::Article.all.each_with_index do |article, i|
+      formatted_teaser = format_teaser(article.teaser)
       if i % 2 == 0
         puts Rainbow("#{i + 1}").bright + ")." + Rainbow(" #{article.title}").bright
         puts
-        puts Rainbow("#{article.teaser}").bright
+        puts Rainbow("#{formatted_teaser}").bright
         puts
         puts "--------------------"
         puts
       else
         puts Rainbow("#{i + 1}). #{article.title}").bright.fg(:green)
         puts
-        puts Rainbow("#{article.teaser}").bright.fg(:green)
+        puts Rainbow("#{formatted_teaser}").bright.fg(:green)
         puts
         puts "--------------------"
         puts
