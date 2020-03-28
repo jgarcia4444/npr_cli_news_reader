@@ -1,6 +1,6 @@
 class NprCliNewsReader::Article
   
-  attr_accessor :category, :title, :teaser, :full_article, :article_url, :author
+  attr_accessor :category, :title, :teaser, :full_article, :article_url, :author, :date
   
   @@all = []
   
@@ -22,7 +22,7 @@ class NprCliNewsReader::Article
   end
   
   def self.sort_articles_by_category(filter)
-    self.all.map {|article| article.category == filter.downcase}
+    self.all.select {|article| article.category == filter.downcase}
   end
   
 end

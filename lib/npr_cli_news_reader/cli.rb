@@ -14,6 +14,7 @@ class NprCliNewsReader::CLI
     greet_user
     present_categories
     display_category_articles
+    handle_article_selection
   end  
   
   def greet_user
@@ -57,7 +58,7 @@ class NprCliNewsReader::CLI
     while !valid_input?(category_input, @categories)
     
       puts "Sorry, the input received is not valid to select a category"
-      puts "Please enter a number 1-8:"
+      puts "Please enter a number 1-#{@categories.size}:"
       category_input = gets.strip  
       
     end
@@ -72,18 +73,47 @@ class NprCliNewsReader::CLI
       if i % 2 == 0
         puts Rainbow("#{i + 1}").bright + ")." + Rainbow(" #{article.title}").bright
         puts
-        puts Rainbow("#{formatted_teaser}").bright
+        puts Rainbow("#{formatted_teaser}")
         puts
         puts "--------------------"
         puts
       else
         puts Rainbow("#{i + 1}). #{article.title}").bright.fg(:green)
         puts
-        puts Rainbow("#{formatted_teaser}").bright.fg(:green)
+        puts Rainbow("#{formatted_teaser}").fg(:green)
         puts
         puts "--------------------"
         puts
       end
     end
   end
+  
+  def handle_article_selection
+    # load up a sorted array of articles with the selected category matching
+    # ask the user for input
+    # send the selected article to the display_full_article insatnce method
+    sorted_articles = NprCliNewsReader::Article.sort_articles_by_category(@selected_category)
+    puts Rainbow("Which article would you like to see the full article for?").bright
+    puts "Use the numbers associated with the articles."
+    article_input = gets.strip
+    
+    while !valid_input?(article_input, sorted_articles)
+      puts "Sorry, the input received is not valid to select an article"
+      puts "Please enter a number 1-#{sorted_articles.size}:"
+      category_input = gets.strip
+    end
+    
+    article = sorted_articles[category_input.to_i - 1]
+    
+    NprCliNewsReader::Scraper.scrape_full_article(article)
+    
+    display_full_article(article)
+    
+  end
+  
+  def display_full_article(article)
+    
+    
+  end
+  
 end
