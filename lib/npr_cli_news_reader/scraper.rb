@@ -21,9 +21,8 @@ class NprCliNewsReader::Scraper
     html = open (article.article_url)
     doc = Nokogiri::HTML(html)
     # discard the first p tag
-    paragraphs = doc.css('#storytext p')[1..-1]
+    paragraphs = doc.css('#storytext > p')
     article.full_article = paragraphs
-    binding.pry
   end
   
 end

@@ -113,9 +113,12 @@ class NprCliNewsReader::CLI
   
   def display_full_article(article)
     
-    puts "This is the selected article title: #{article.title}"
+    puts Rainbow("#{article.title}").bright
     puts "--------------------"
-    article.full_article.each {|paragraph_node| puts "\t#{paragraph_node.text}"}
+    article.full_article.each do |paragraph_node| 
+      puts "\t#{paragraph_node.text}"
+      puts "--------------------"
+    end
     
   end
   
