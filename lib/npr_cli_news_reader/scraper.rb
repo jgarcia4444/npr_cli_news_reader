@@ -4,8 +4,8 @@ class NprCliNewsReader::Scraper
   
   def self.scrape_articles_for_category(selected_category)
     html = open("#{@@base_url}/sections/#{selected_category.downcase}")
-    @doc = Nokogiri::HTML(html)
-    articles = @doc.css('article.item')
+    doc = Nokogiri::HTML(html)
+    articles = doc.css('article.item')
     articles.each do |article|
       article_attributes = {
         category: selected_category.downcase,
@@ -15,6 +15,15 @@ class NprCliNewsReader::Scraper
       }
       NprCliNewsReader::Article.new(article_attributes)
     end
+  end
+  
+  def self.scrape_full_article(article)
+    html = open (article.article_url)
+    doc = Nokogiri::HTML(html)
+    # discard the first p tag
+    paragraphs = doc.css('#storytext p')[1..-1]
+    article.full_article = paragraphs
+    binding.pry
   end
   
 end

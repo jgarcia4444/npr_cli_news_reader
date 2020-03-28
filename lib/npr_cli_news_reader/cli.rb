@@ -100,10 +100,10 @@ class NprCliNewsReader::CLI
     while !valid_input?(article_input, sorted_articles)
       puts "Sorry, the input received is not valid to select an article"
       puts "Please enter a number 1-#{sorted_articles.size}:"
-      category_input = gets.strip
+      article_input = gets.strip
     end
     
-    article = sorted_articles[category_input.to_i - 1]
+    article = sorted_articles[article_input.to_i - 1]
     
     NprCliNewsReader::Scraper.scrape_full_article(article)
     
@@ -113,6 +113,9 @@ class NprCliNewsReader::CLI
   
   def display_full_article(article)
     
+    puts "This is the selected article title: #{article.title}"
+    puts "--------------------"
+    article.full_article.each {|paragraph_node| puts "\t#{paragraph_node.text}"}
     
   end
   
