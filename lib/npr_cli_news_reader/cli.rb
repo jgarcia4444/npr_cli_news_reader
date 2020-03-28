@@ -62,9 +62,11 @@ class NprCliNewsReader::CLI
       
     end
     
-    puts Rainbow("#{@categories[category_input.to_i - 1]} Category").bright
+    @selected_category = @categories[category_input.to_i - 1].downcase
+    
+    puts Rainbow("#{@selected_category.capitalize} Category").bright
     puts "--------------------"
-    NprCliNewsReader::Scraper.scrape_articles_for_category(@categories[category_input.to_i - 1])
+    NprCliNewsReader::Scraper.scrape_articles_for_category(@selected_category)
     NprCliNewsReader::Article.all.each_with_index do |article, i|
       formatted_teaser = format_teaser(article.teaser)
       if i % 2 == 0
