@@ -4,7 +4,7 @@ class NprCliNewsReader::Scraper
   
   def self.scrape_articles_for_category(selected_category)
     if NprCliNewsReader::Article.all.detect {|article| article.category == selected_category}
-      NprCliNewsReader::Article.scrape_articles_by_category
+      return
     else
       html = open("#{@@base_url}/sections/#{selected_category}")
       doc = Nokogiri::HTML(html)
