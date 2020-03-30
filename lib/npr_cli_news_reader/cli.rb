@@ -7,10 +7,28 @@ class NprCliNewsReader::CLI
   end
   
   def call
+    user_input = ""
     greet_user
-    present_categories
-    handle_category_input
-    handle_article_selection
+    while user_input.downcase != 'exit'
+      present_categories
+      handle_category_input
+      handle_article_selection
+      puts "What would you like to do?"
+      puts "Exit Program: exit"
+      puts "Go back to Category Selection: category"
+      puts "Go back to article selection: article"
+      user_input = gets.strip
+      while user_input != "exit"
+        if user_input.downcase == 'category'
+          present_categories
+          handle_category_input
+          handle_article_selection
+        elsif user_input.downcase == 'article'
+          handle_article_selection
+        end
+      end
+    end
+    
   end  
   
   def greet_user
