@@ -7,29 +7,32 @@ class NprCliNewsReader::CLI
   end
   
   def call
-    user_input = ""
     greet_user
-    while user_input.downcase != 'exit'
+    present_categories
+    handle_category_input
+    handle_article_selection
+    end_of_application_options
+    user_input = gets.strip
+    if user_input.downcase == "category"
       present_categories
       handle_category_input
       handle_article_selection
-      puts "What would you like to do?"
-      puts "Exit Program: exit"
-      puts "Go back to Category Selection: category"
-      puts "Go back to article selection: article"
-      user_input = gets.strip
-      while user_input != "exit"
-        if user_input.downcase == 'category'
-          present_categories
-          handle_category_input
-          handle_article_selection
-        elsif user_input.downcase == 'article'
-          handle_article_selection
-        end
-      end
+      puts "Thanks for using Npr CLI News Reader, Goodbye!"
+    elsif user_input.downcase == "article"
+      display_category_articles
+      handle_article_selection
+      puts "Thanks for using Npr CLI News Reader, Goodbye!"
+    else
+      return
     end
-    
-  end  
+  end 
+
+  def end_of_application_options
+    puts "What would you like to do?"
+    puts "Exit Program: exit"
+    puts "Go back to Category Selection: category"
+    puts "Go back to article selection: article"
+  end
   
   def greet_user
     puts Rainbow("Hello fellow fact finder...").bright
@@ -122,11 +125,11 @@ class NprCliNewsReader::CLI
       puts "\t#{paragraph_node.text}"
       puts "--------------------"
     end
-    puts Rainbow("Would you like to see the article on your default web browse? (y/n):").bright
-    user_input = gets.strip
-    if ["yes, y"].include?(user_input.downcase)
-      system("open #{article.article_url}")
-    end
+    # puts Rainbow("Would you like to see the article on your default web browse? (y/n):").bright
+    # user_input = gets.strip
+    # if ["yes, y"].include?(user_input.downcase)
+    #   system("open #{article.article_url}")
+    # end
   end
   
 end
