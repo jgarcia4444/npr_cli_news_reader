@@ -20,8 +20,8 @@ class NprCliNewsReader::CLI
       elsif user_input.downcase == 'article'
         go_back_to_articles
       else
-        puts 'Thank you for using Npr CLI News Reader!'
-        puts 'Goodbye!'
+        puts Rainbow('Thank you for using Npr CLI News Reader!').bright.fg(:white)
+        puts Rainbow('Goodbye!').bright.fg(:green)
         @done = true
       end
     end
@@ -40,33 +40,12 @@ class NprCliNewsReader::CLI
     handle_article_selection
     display_app_end_user_options
   end
-  
-  # def call
-  #   greet_user
-  #   present_categories
-  #   handle_category_input
-  #   handle_article_selection
-  #   end_of_application_options
-  #   user_input = gets.strip
-  #   if user_input.downcase == "category"
-  #     present_categories
-  #     handle_category_input
-  #     handle_article_selection
-  #     puts "Thanks for using Npr CLI News Reader, Goodbye!"
-  #   elsif user_input.downcase == "article"
-  #     display_category_articles
-  #     handle_article_selection
-  #     puts "Thanks for using Npr CLI News Reader, Goodbye!"
-  #   else
-  #     return
-  #   end
-  # end 
 
   def display_app_end_user_options
-    puts "What would you like to do?"
-    puts "Exit Program: exit"
-    puts "Go back to Category Selection: category"
-    puts "Go back to article selection: article"
+    puts Rainbow("What would you like to do?").bright.fg(:white)
+    puts "#{Rainbow('Exit Program:').bright.fg(:white)} #{Rainbow('exit').bright.fg(:green)}"
+    puts "#{Rainbow('Go back to Category Selection:').bright.fg(:white)} #{Rainbow('category').bright.fg(:green)}"
+    puts "#{Rainbow('Go back to article selection:').bright.fg(:white)} #{Rainbow('article').bright.fg(:green)}"
   end
   
   def greet_user
