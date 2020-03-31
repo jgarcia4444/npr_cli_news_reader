@@ -1,33 +1,68 @@
 class NprCliNewsReader::CLI 
   
-  attr_accessor :selected_category
+  attr_accessor :selected_category, :done
   
   def initialize
+    @done = false
     @categories = ["National", "World", "Politics", "Business", "Health", "Science", "Technology", "Race & Culture"]
   end
-  
-  def call
+
+  def call 
     greet_user
     present_categories
     handle_category_input
     handle_article_selection
-    end_of_application_options
-    user_input = gets.strip
-    if user_input.downcase == "category"
-      present_categories
-      handle_category_input
-      handle_article_selection
-      puts "Thanks for using Npr CLI News Reader, Goodbye!"
-    elsif user_input.downcase == "article"
-      display_category_articles
-      handle_article_selection
-      puts "Thanks for using Npr CLI News Reader, Goodbye!"
-    else
-      return
+    display_app_end_user_options
+    while @done == false
+      user_input = gets.strip
+      if user_input.downcase == 'category'
+        go_back_to_category_selection
+      elsif user_input.downcase == 'article'
+        go_back_to_articles
+      else
+        puts 'Thank you for using Npr CLI News Reader!'
+        puts 'Goodbye!'
+        @done = true
+      end
     end
-  end 
+  end
 
-  def end_of_application_options
+  def go_back_to_articles
+    display_category_articles
+    handle_article_selection
+    display_app_end_user_options
+  end
+
+
+  def go_back_to_category_selection
+    present_categories
+    handle_category_input
+    handle_article_selection
+    display_app_end_user_options
+  end
+  
+  # def call
+  #   greet_user
+  #   present_categories
+  #   handle_category_input
+  #   handle_article_selection
+  #   end_of_application_options
+  #   user_input = gets.strip
+  #   if user_input.downcase == "category"
+  #     present_categories
+  #     handle_category_input
+  #     handle_article_selection
+  #     puts "Thanks for using Npr CLI News Reader, Goodbye!"
+  #   elsif user_input.downcase == "article"
+  #     display_category_articles
+  #     handle_article_selection
+  #     puts "Thanks for using Npr CLI News Reader, Goodbye!"
+  #   else
+  #     return
+  #   end
+  # end 
+
+  def display_app_end_user_options
     puts "What would you like to do?"
     puts "Exit Program: exit"
     puts "Go back to Category Selection: category"
