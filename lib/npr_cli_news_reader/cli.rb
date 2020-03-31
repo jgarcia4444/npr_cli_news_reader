@@ -139,11 +139,14 @@ class NprCliNewsReader::CLI
       puts "\t#{paragraph_node.text}"
       puts "--------------------"
     end
-    # puts Rainbow("Would you like to see the article on your default web browse? (y/n):").bright
-    # user_input = gets.strip
-    # if ["yes, y"].include?(user_input.downcase)
-    #   system("open #{article.article_url}")
-    # end
+    open_default_browser(article)
   end
-  
+
+  def open_default_browser(article)
+    puts Rainbow("Would you like to view this article on the npr website? (Y/n): ").bright.fg(:white)
+    user_input = gets.strip.downcase 
+    if user_input == 'y'
+      system("open", "#{article.article_url}")
+    end
+  end
 end
