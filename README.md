@@ -1,6 +1,6 @@
 # NprCliNewsReader
 
-This Gem allows a user to choose from a list of news categories. The ClI then displays the articles from npr.org that are under the selected category. Then the user can select a specific article. Once an article is selected then the full article will be displayed. Once the user gets to the end of the article they have a choice to exit the program or return to the category selection.
+This Gem allows a user to choose from a list of news categories. The ClI then displays the articles from npr.org that are under the selected category. Then the user can select a specific article. Once an article is selected then the full article will be displayed. Once the user gets to the end of the article they have a choice to exit the program, return to the category selection, or return back to the article selection from the previous category selected.
 
 ## Installation
 
@@ -18,15 +18,19 @@ Or install it yourself as:
 
     $ gem install npr_cli_news_reader
 
+Or clone the git repository from github
+
+In your terminal run:
+
+    $ git clone https://github.com/jgarcia4444/npr_cli_news_reader.git
+
+    $ ./bin/setup
+
+    $ ./bin/npr_cli_news_reader
+
 ## Usage
 
-In Terminal enter once installed:
 
-  irb
-  > require 'npr_cli_news_reader'
-  > NprCliNewsReader::Run.start
-  
-This command will start up the CLI application
 
 
 ## Development
