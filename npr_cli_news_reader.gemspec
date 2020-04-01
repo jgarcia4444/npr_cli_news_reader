@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["'bballwiz4@gmail.com'"]
 
   spec.summary       = %q{"A CLI that allows users to read news articles from npr.org."}
-  spec.description   = %q{"This Gem allows a user to choose from a list of news categories. The ClI then displays the articles from npr.org that are under the selected category. Then the user can select a specific article. Once an article is selected then the full article will be displayed. Once the user gets to the end of the article they have a choice to exit the program or return to the category selection."}
+  spec.description   = %q{"This Gem allows a user to choose from a list of news categories. The ClI then displays the articles from npr.org that are under the selected category. Then the user can select a specific article. Once an article is selected then the full article will be displayed. Once the user gets to the end of the article they have a choice to exit the program, return to the category selection, or return to the previous article selection."}
   spec.homepage      = "https://github.com/jgarcia4444/npr_cli_news_reader.git"
   spec.license       = "MIT"
 
