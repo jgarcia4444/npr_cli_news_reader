@@ -4,19 +4,30 @@ This Gem allows a user to choose from a list of news categories. The ClI then di
 
 ## Installation
 
+## Install as a gem
+
 Add this line to your application's Gemfile:
 
 ```ruby
 gem 'npr_cli_news_reader'
 ```
-
-And then execute:
+And then execute in terminal:
 
     $ bundle
 
 Or install it yourself as:
 
     $ gem install npr_cli_news_reader
+
+In terminal:
+
+    $ irb
+    > require "npr_cli_news_reader"
+    > NprCliNewsReader::CLI.new.call
+
+The application will start up for you.
+
+
 
 Or clone the git repository from github
 
@@ -28,9 +39,11 @@ In your terminal run:
 
     $ ./bin/npr_cli_news_reader
 
+The CLI application will start after the last command
+
 ## Usage
 
-
+This ClI is meant to bring the news of NPR to your terminal. No pictures getting in the way.
 
 
 ## Development

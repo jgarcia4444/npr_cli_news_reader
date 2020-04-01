@@ -90,6 +90,7 @@ class NprCliNewsReader::CLI
       category_input = gets.strip  
     end
     @selected_category = @categories[category_input.to_i - 1].downcase
+    binding.pry
     puts Rainbow("#{@selected_category.capitalize} Category").bright
     puts "--------------------"
     NprCliNewsReader::Scraper.scrape_articles_for_category(@selected_category)
