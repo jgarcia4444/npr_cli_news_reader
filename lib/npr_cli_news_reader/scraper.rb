@@ -6,7 +6,12 @@ class NprCliNewsReader::Scraper
     if NprCliNewsReader::Article.all.detect {|article| article.category == selected_category}
       return
     else
-      html = open("#{@@base_url}/sections/#{selected_category}")
+      html = ""
+      if selected_category == "race & culture"
+        html = open("#{@@base_url}/sections/codeswitch")
+      else
+        html = open("#{@@base_url}/sections/#{selected_category}")
+      end
       doc = Nokogiri::HTML(html)
       articles = doc.css('article.item')
       articles.each do |article|
